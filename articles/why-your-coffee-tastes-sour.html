@@ -9,6 +9,7 @@
   <meta property="og:description" content="Sour coffee is under-extraction. Three fixes ranked by impact, plus a 2-minute diagnostic checklist.">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://groundwork-coffee.pages.dev/articles/why-your-coffee-tastes-sour.html">
+  <script>try{if(localStorage.getItem('gw-theme')==='dark'||(!localStorage.getItem('gw-theme')&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}</script>
   <link rel="stylesheet" href="../styles.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%239a5b26'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M7 9h9v6a4.5 4.5 0 0 1-4.5 4.5h0A4.5 4.5 0 0 1 7 15V9z'/%3E%3Cpath d='M16 10.5h1.6a2.4 2.4 0 0 1 0 4.8H16'/%3E%3Cpath d='M10.5 3.5c0 1.4 1.8 1.4 1.8 2.8M13.8 3.5c0 1.4 1.8 1.4 1.8 2.8'/%3E%3C/g%3E%3C/svg%3E">
   <meta name="theme-color" content="#9a5b26">
@@ -28,6 +29,10 @@
       </span>
       <span class="brand-name">Groundwork Coffee<small>Better coffee, same kitchen</small></span>
     </a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode" aria-pressed="false" title="Switch to dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+    </button>
     <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
         <path d="M4 7h16M4 12h16M4 17h16"/>
@@ -35,6 +40,12 @@
     </button>
     <nav class="site-nav" id="siteNav" aria-label="Main navigation">
       <ul>
+        <li class="nav-search">
+          <div class="site-search">
+            <input type="search" id="siteSearch" placeholder="Search guides&hellip;" aria-label="Search articles" aria-expanded="false" aria-controls="siteSearchResults" autocomplete="off" role="combobox">
+            <ul class="site-search-results" id="siteSearchResults" role="listbox" hidden></ul>
+          </div>
+        </li>
         <li><a href="../index.html">Home</a></li>
         <li><a href="../index.html#articles">All Articles</a></li>
         <li><a href="../index.html#start-here">Start Here</a></li>
@@ -155,28 +166,7 @@
   </div>
 </footer>
 
-<script>
-(function () {
-  var btn = document.getElementById('navToggle');
-  var nav = document.getElementById('siteNav');
-  function setOpen(open) {
-    nav.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-  }
-  btn.addEventListener('click', function () {
-    setOpen(!nav.classList.contains('open'));
-  });
-  nav.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () { setOpen(false); });
-  });
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && nav.classList.contains('open')) {
-      setOpen(false);
-      btn.focus();
-    }
-  });
-})();
-</script>
+<script src="../assets/site.js"></script>
 
 </body>
 </html>
