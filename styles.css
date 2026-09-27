@@ -17,7 +17,14 @@
 
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px; /* keep anchored sections clear of the sticky header */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 body {
   margin: 0;
@@ -35,6 +42,12 @@ img, svg { max-width: 100%; height: auto; }
 
 a { color: var(--accent-dark); text-decoration: underline; text-underline-offset: 3px; }
 a:hover { color: var(--accent); }
+
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 
 /* ---------- Header ---------- */
 .site-header {
@@ -254,6 +267,21 @@ section.block { padding: 2.75rem 0; }
   text-transform: uppercase;
   color: var(--accent-dark);
 }
+
+/* Category art: small distinctive icon per card, keeps text cards scannable */
+.card-art {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.35rem;
+}
+
+.card-art svg { width: 26px; height: 26px; stroke: var(--accent-dark); }
 
 .card h3 { margin: 0; font-size: 1.12rem; line-height: 1.4; }
 .card h3 a { color: var(--ink); text-decoration: none; }
@@ -527,11 +555,13 @@ article.post th {
   .site-nav ul { flex-direction: column; align-items: stretch; padding: 0.5rem; }
   .site-nav a { padding: 0.75rem 1rem; }
 
-  .site-header { position: relative; }
-  .site-header.sticky-fallback { position: sticky; }
-
   .footer-inner { grid-template-columns: 1fr; }
   section.block { padding: 2rem 0; }
+}
+
+@media (max-width: 560px) {
+  article.post table { font-size: 0.82rem; }
+  article.post th, article.post td { padding: 0.45rem 0.5rem; }
 }
 
 @media (min-width: 721px) {
