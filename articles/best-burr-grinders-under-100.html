@@ -10,6 +10,8 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://groundwork-coffee.pages.dev/articles/best-burr-grinders-under-100.html">
   <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%239a5b26'/%3E%3Cg fill='none' stroke='%23fff' stroke-width='1.8' stroke-linecap='round'%3E%3Cpath d='M7 9h9v6a4.5 4.5 0 0 1-4.5 4.5h0A4.5 4.5 0 0 1 7 15V9z'/%3E%3Cpath d='M16 10.5h1.6a2.4 2.4 0 0 1 0 4.8H16'/%3E%3Cpath d='M10.5 3.5c0 1.4 1.8 1.4 1.8 2.8M13.8 3.5c0 1.4 1.8 1.4 1.8 2.8'/%3E%3C/g%3E%3C/svg%3E">
+  <meta name="theme-color" content="#9a5b26">
   <!-- MEDIVAVINE/JOURNEY: paste ad network script here -->
 </head>
 <body>
@@ -166,9 +168,21 @@
 (function () {
   var btn = document.getElementById('navToggle');
   var nav = document.getElementById('siteNav');
-  btn.addEventListener('click', function () {
-    var open = nav.classList.toggle('open');
+  function setOpen(open) {
+    nav.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  btn.addEventListener('click', function () {
+    setOpen(!nav.classList.contains('open'));
+  });
+  nav.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setOpen(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && nav.classList.contains('open')) {
+      setOpen(false);
+      btn.focus();
+    }
   });
 })();
 </script>
